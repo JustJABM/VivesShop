@@ -1,0 +1,12 @@
+﻿@model VivesShop.Models.MenuItem
+
+<tr class="align-content-center">
+    <td>@Model.Name</td>
+    <td>@Model.Type</td>
+    <td>@Model.Price</td>
+    
+    <td>
+        <a class="btn btn-info" asp-action="Toevoegen" asp-route-id="@Model.Id">+</a>
+
+    </td>
+</tr>
