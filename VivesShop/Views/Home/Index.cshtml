@@ -1,9 +1,10 @@
-﻿@{
+﻿@model OrderModel
+@{
     ViewData["Title"] = "Bestelling";
 }
 
 
-<div>
+<div class="table-responsive">
     <div style='float: left;' class="table-bordered">
         <h1>Arikelen</h1>
         <table class="table-bordered">
@@ -17,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var items in Model)
+                @foreach (var items in Model.MenuItems)
                 {
                     <partial name="ItemPartial" model="items" />
                 }
@@ -26,11 +27,27 @@
     </div>
     <div style='float:right;' class="table-bordered">
         <h1>Bestelling</h1>
-        @* @foreach (var orders in Model)
-        {
-            <partial name="OrderPartial" model="orders" />
-        }
-        <a asp-action="Create" class="btn btn-info">Bestel</a>*@
+        <table class="table-bordered">
+            <thead>
+            <tr>
+
+                <td>Artikel</td>
+                <td>Soort</td>
+                <td>Prijs</td>
+                <td>Verwijderen</td>
+            </tr>
+            </thead>
+            <tbody>
+            
+            @foreach (var beingordered in Model.BeingOrdered)
+            {
+                <partial name="OrderPartial" model="beingordered"/>
+
+            }
+            </tbody>
+        </table>
+        
+        <a asp-action="CreateOrder" class="btn btn-info">Bestel</a> <!--tis eign zo voor comment :')-->
 
     </div>
 </div>

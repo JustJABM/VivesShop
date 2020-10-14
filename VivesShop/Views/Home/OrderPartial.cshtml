@@ -1,4 +1,4 @@
-﻿@model VivesShop.Models.BeingOrdered
+﻿ @model BeingOrdered
 
 <tr class="align-content-center">
     <td>@Model.Name</td>
@@ -6,7 +6,7 @@
     <td>@Model.Price</td>
     
     <td>
-        <a class="btn btn-info" asp-action="Verwijderen" asp-route-id="@Model.Id">-</a>
+        <a class="btn btn-info" asp-action="DeleteOrder" asp-route-id="@Model.Id">-</a> 
 
     </td>
 </tr>

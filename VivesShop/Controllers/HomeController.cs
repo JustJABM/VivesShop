@@ -17,27 +17,27 @@ namespace VivesShop.Controllers
         public HomeController(IDatabase database)
         {
             _database = database;
+            
         }
-
-
-        
 
         public IActionResult Index()
         {
-            var items = GetItems();
             
-            return View(items);
+            var shopmodel = new OrderModel();
+            var items = GetItems();
+            var beingorderd = GetOrders();
+            shopmodel.MenuItems = items;
+            
+            shopmodel.BeingOrdered = beingorderd;
+            
+
+            return View(shopmodel);
         }
 
-        private object GetBeingOrdered()
-        {
-            return _database.Orders;
-        }
 
         public IList<BeingOrdered> GetOrders()
         {
-
-            return new List<BeingOrdered>();
+            return _database.Orders;
         }
         public IList<MenuItem> GetItems()
         {
@@ -47,6 +47,16 @@ namespace VivesShop.Controllers
         {
             return View();
         }
+        public MenuItem GetMenu(int id)
+        {
+            return _database.Items
+                .SingleOrDefault(p => p.Id == id);
+        }
+        public  BeingOrdered GetOrder(int id)
+        {
+            return _database.Orders
+                .SingleOrDefault(p => p.Id == id);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -54,27 +64,72 @@ namespace VivesShop.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Create(MenuItem item)
+       
+        public IActionResult Toevoegen(int id)
         {
+            //Validation
             
 
+            var dbItem = GetMenu(id);
+            var dbOrder = new BeingOrdered();
+            
+
+            dbOrder.Id = getOrderId();
+            dbOrder.Name = dbItem.Name;
+            dbOrder.Type = dbItem.Type;
+            dbOrder.Price = dbItem.Price;
+
+            _database.Orders.Add(dbOrder);
+
             return RedirectToAction("Index");
+
         }
-       
+
 
         private int getOrderId()
         {
-            if (_database.Orders.Any())
+            var count = _database.Orders == null ? 0 : _database.Orders.Count();
+            var getMaxId = 1;
+            if (count > 0)
             {
-                var getMaxId = _database.Orders.Max(p => p.Id);
-                return getMaxId += 1;
+                getMaxId = _database.Orders.Max(p => p.Id);
+                getMaxId += 1;
             }
-            else
-            {
-                return 1;
-            }
+
+            return getMaxId;
         }
 
-        
+        private bool IsValid(MenuItem item)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(item.Name))
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(item.Type))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public IActionResult DeleteOrder(int id)
+        {
+            var dbOrder = GetOrder(id);
+
+            if (dbOrder == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            _database.Orders.Remove(dbOrder);
+
+            return RedirectToAction("Index");
+        }
     }
 }

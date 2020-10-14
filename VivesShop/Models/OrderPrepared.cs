@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VivesShop.Models
 {
-    public class KitchenOrder
+    public class OrderPrepared
     {
         public int Id { get; set; }
         public int OrderTotalId { get; set; }

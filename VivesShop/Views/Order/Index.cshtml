@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Overzicht bestelling</h1>
+
+<div class="table-responsive">
+    <div style='float: left;' class="table-bordered">
+        <h1>Arikelen</h1>
+        <table class="table-bordered">
+            <thead>
+            <tr>
+
+                <td>Artikel</td>
+                <td>Soort</td>
+                <td>Prijs</td>
+                <td>Acties</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var items in Model.MenuItems)
+            {
+                <partial name="ItemPartial" model="items" />
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<a asp-action="Create" class="btn btn-info">Bestellen</a>

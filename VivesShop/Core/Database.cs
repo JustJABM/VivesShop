@@ -12,15 +12,17 @@ namespace VivesShop.Core
         {
             
             Items = new List<MenuItem>();
-            BeingOrdereds = new List<BeingOrdered>();
-            Prepareds = new List<KitchenOrder>();
+            BeingOrdereds = new List<BeingOrdered>(); 
+            Prepareds = new List<OrderPrepared>();
+            Orders=new List<BeingOrdered>();
+            Prepareds=new List<OrderPrepared>();
         }
 
         public IList<MenuItem> Items { get; set; }
         public IList<BeingOrdered> Orders { get; set; }
 
         public IList<BeingOrdered> BeingOrdereds { get; set; }
-        public IList<KitchenOrder> Prepareds { get; set; }
+        public IList<OrderPrepared> Prepareds { get; set; }
 
         public void Initialize()
         {
