@@ -7,7 +7,8 @@ namespace VivesShop.Core
     {
         IList<MenuItem> Items { get; set; }
         IList<BeingOrdered> Orders { get; set; }
-        
+        public IList<OrderPrepared> Prepareds { get; set; }
+
         void Initialize();
     }
 }

@@ -14,6 +14,6 @@ namespace VivesShop.Models
         public string Type { get; set; }
 
         public DateTime OrderDate { get; set; }
-        public int Status{ get; set; }
+        public string Status{ get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace VivesShop.Controllers
 {
     public class MenuController : Controller
     {
+
         private readonly IDatabase _database;
         public MenuController(IDatabase database)
         {
@@ -154,19 +155,7 @@ namespace VivesShop.Controllers
 
             return RedirectToAction("Index");
         }
-        public IActionResult Toevoegen(int id)
-        {
-            /*var item = _database.Items.SingleOrDefault(a => a.Id == id);
-
-            {
-                //Frieten toevoegen
-                new BeingOrdered { Id = getOrderId(), Name = item.Name, Price = item.Price, Type = item.Type };
-
-
-            }
-            */
-            return RedirectToAction("Index");
-        }
+        
         
     }
 }

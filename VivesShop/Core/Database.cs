@@ -15,14 +15,15 @@ namespace VivesShop.Core
             BeingOrdereds = new List<BeingOrdered>(); 
             Prepareds = new List<OrderPrepared>();
             Orders=new List<BeingOrdered>();
-            Prepareds=new List<OrderPrepared>();
+           
         }
 
         public IList<MenuItem> Items { get; set; }
         public IList<BeingOrdered> Orders { get; set; }
+        public IList<OrderPrepared> Prepareds { get; set; }
 
         public IList<BeingOrdered> BeingOrdereds { get; set; }
-        public IList<OrderPrepared> Prepareds { get; set; }
+        
 
         public void Initialize()
         {
@@ -48,6 +49,11 @@ namespace VivesShop.Core
                 new MenuItem{Id = 13, Name = "cola", Price = 2.50m, Type = "Drank"},
                 new MenuItem{Id = 14, Name = "Fanta", Price = 2.50m, Type = "Drank"},
                 new MenuItem{Id = 15, Name = "Stella", Price = 2.00m, Type = "Drank"},
+            };
+            Prepareds = new List<OrderPrepared>
+            {
+                //Frieten toevoegen
+                new OrderPrepared{Id = 1, OrderTotalId = 1, Name = "TestOrder", OrderDate = DateTime.Now.Date, Status = "Done", Price = 2.50m, Type = "Friet"}
             };
         }
     }

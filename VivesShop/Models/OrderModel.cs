@@ -10,6 +10,8 @@ namespace VivesShop.Models
         public IList<BeingOrdered> BeingOrdered;
 
         public IList<MenuItem> MenuItems;
-        
+
+        public decimal dTotaalPrijs = 0.00m;
+
     }
 }

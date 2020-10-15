@@ -12,7 +12,7 @@ namespace VivesShop.Controllers
 {
     public class HomeController : Controller
     {
-        
+        public OrderModel shopmodel = new OrderModel();
         private readonly IDatabase _database;
         public HomeController(IDatabase database)
         {
@@ -22,15 +22,16 @@ namespace VivesShop.Controllers
 
         public IActionResult Index()
         {
+
             
-            var shopmodel = new OrderModel();
             var items = GetItems();
             var beingorderd = GetOrders();
             shopmodel.MenuItems = items;
             
-            shopmodel.BeingOrdered = beingorderd;
             
+            shopmodel.BeingOrdered = beingorderd;
 
+            
             return View(shopmodel);
         }
 
@@ -72,7 +73,7 @@ namespace VivesShop.Controllers
 
             var dbItem = GetMenu(id);
             var dbOrder = new BeingOrdered();
-            
+            shopmodel.dTotaalPrijs += dbOrder.Price;
 
             dbOrder.Id = getOrderId();
             dbOrder.Name = dbItem.Name;
@@ -99,6 +100,8 @@ namespace VivesShop.Controllers
             return getMaxId;
         }
 
+        
+
         private bool IsValid(MenuItem item)
         {
             if (item == null)
@@ -121,7 +124,7 @@ namespace VivesShop.Controllers
         public IActionResult DeleteOrder(int id)
         {
             var dbOrder = GetOrder(id);
-
+            shopmodel.dTotaalPrijs -= dbOrder.Price;
             if (dbOrder == null)
             {
                 return RedirectToAction("Index");
@@ -131,5 +134,8 @@ namespace VivesShop.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        
     }
 }

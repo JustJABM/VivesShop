@@ -1,12 +1,13 @@
 ﻿ @model BeingOrdered
 
-<tr class="align-content-center">
-    <td>@Model.Name</td>
-    <td>@Model.Type</td>
-    <td>@Model.Price</td>
+ <tr class="align-content-center">
+     <td>@Model.Name</td>
+     <td>@Model.Type</td>
+     <td>@Model.Price</td>
     
-    <td>
-        <a class="btn btn-info" asp-action="DeleteOrder" asp-route-id="@Model.Id">-</a> 
+     <td>
+         <a class="btn btn-info" asp-action="DeleteOrder" asp-route-id="@Model.Id">-</a> 
 
-    </td>
-</tr>
+     </td>
+    
+ </tr>
