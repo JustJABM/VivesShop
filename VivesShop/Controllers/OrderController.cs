@@ -48,14 +48,11 @@ namespace VivesShop.Controllers
             return _database.Orders
                 .SingleOrDefault(p => p.Id ==  id);
         }
-        [HttpGet]
-        public IActionResult CreatePrepare()
+        
+       
+        public IActionResult CreatePrepare(List<BeingOrdered> prepared)
         {
-            return View("Index");
-        }
-        public IActionResult CreatePrepare(int id)
-        {
-            var dbOrder = GetOrder(id);
+            var dbOrder = GetOrder(1);
             var dbPrepare = new OrderPrepared();
             var PreparedId = GetorderTotalId();
 
@@ -68,6 +65,7 @@ namespace VivesShop.Controllers
             dbPrepare.Status = "Not Prepared";
 
             _database.Prepareds.Add(dbPrepare);
+            
 
             return RedirectToPage("Index", "Home");
         }
