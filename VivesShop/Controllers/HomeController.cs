@@ -12,6 +12,7 @@ namespace VivesShop.Controllers
 {
     public class HomeController : Controller
     {
+
         public OrderModel shopmodel = new OrderModel();
         private readonly IDatabase _database;
         public HomeController(IDatabase database)
@@ -44,10 +45,7 @@ namespace VivesShop.Controllers
         {
             return _database.Items;
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
         public MenuItem GetMenu(int id)
         {
             return _database.Items

@@ -12,7 +12,7 @@ namespace VivesShop.Controllers
     {
         public decimal dTotaalPrijs = 0.00m; 
         private readonly IDatabase _database;
-        public OrderModel shopmodel = new OrderModel();
+        
         public PreparedModel PreparedModel = new PreparedModel();
         public OrderController(IDatabase database)
         { 

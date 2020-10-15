@@ -47,9 +47,9 @@
                 }
             </tbody>
         </table>
-        @*<partial name="testpartial" model="Model.dTotaalPrijs"/>*@
+        
 
-
+        Totaal: €@Model.BeingOrdered.Sum(item => item.Price)
         <a class="btn btn-info" asp-area="" asp-controller="Order" asp-action="Index">Order</a>
 
     </div>

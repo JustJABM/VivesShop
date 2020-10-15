@@ -10,13 +10,16 @@
         <h1>Arikelen</h1>
         <table class="table-bordered">
             <thead>
-            <tr>
-
-                <td>Artikel</td>
-                <td>Soort</td>
-                <td>Prijs</td>
-                <td>Acties</td>
-            </tr>
+                <tr>
+                    <td>OrderNr</td>
+                    <td>Artikel</td>
+                    <td>Soort</td>
+                    <td>Prijs</td>
+                    <td>Acties</td>
+                    <td>BetselDatum</td>
+                    <td>Status</td>
+                    <td>Voltooien</td>
+                </tr>
             </thead>
             <tbody>
             @foreach (var prepareds in Model.OrderPrepared)
